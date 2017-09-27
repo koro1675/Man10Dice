@@ -17,7 +17,7 @@ public class Man10DiceCommands implements CommandExecutor {
     String prefix = "§l[§d§lM§f§la§a§ln§f§l10§5§lDice§f§l]";
     Man10Dice plugin = null;
     public Man10DiceCommands(Man10Dice plugin){
-        this.plugin = null;
+        this.plugin = plugin;
     }
 
     @Override
@@ -28,7 +28,11 @@ public class Man10DiceCommands implements CommandExecutor {
         /////////////////////////////////////
         if (args.length == 0){
             p.sendMessage(prefix + "ver2.1");
-            plugin.man10DiceManager.openDiceMenu(p);
+            try {
+                plugin.man10DiceManager.openDiceMenu(p);
+            } catch (Exception e){
+                p.sendMessage(e.toString());
+            }
         }
 
         /////////////////////////////////////

@@ -18,6 +18,7 @@ public class Man10DiceManager {
 
     /////////////////////////////////////////////////////////////////
     boolean mes = false;
+    boolean someoneInMenu = false;
     long lastDiceTime = System.currentTimeMillis();
     long coolTime = 5000;
     long range = 0;
@@ -30,9 +31,45 @@ public class Man10DiceManager {
     Player owner;
     String prefix = "§l[§d§lM§f§la§a§ln§f§l10§5§lDice§f§l]";
     /////////////////////////////////////////////////////////////////
-    
+
 
     int openDiceMenu(Player p){
+        Inventory inv = Bukkit.getServer().createInventory(null, 9, prefix + "Dice Select Menu");
+        //gui help
+        ItemStack dicehelp = new ItemStack(Material.PAPER);
+        ItemMeta dicehelpMeta = dicehelp.getItemMeta();
+        dicehelpMeta.setDisplayName("§7§lDiceHelp");
+        dicehelp.setItemMeta(dicehelpMeta);
+        inv.setItem(0, dicehelp);
+        //mdice 6
+        ItemStack dice6 = new ItemStack(Material.CHEST);
+        ItemMeta dice6Meta = dice6.getItemMeta();
+        dice6Meta.setDisplayName("§e§l6§3§l面Dice");
+        dice6.setItemMeta(dice6Meta);
+        inv.setItem(1, dice6);
+        //mdice 12
+        ItemStack dice12 = new ItemStack(Material.CHEST);
+        ItemMeta dice12Meta = dice12.getItemMeta();
+        dice12Meta.setDisplayName("§e§l12§3§l面Dice");
+        dice12.setItemMeta(dice12Meta);
+        inv.setItem(4, dice12);
+        //mdice 100
+        ItemStack dice100 = new ItemStack(Material.CHEST);
+        ItemMeta dice100Meta = dice100.getItemMeta();
+        dice100Meta.setDisplayName("§e§l100§3§l面Dice");
+        dice100.setItemMeta(dice100Meta);
+        inv.setItem(7, dice100);
+        //100Dstart~stop自動
+        ItemStack d100 = new ItemStack(Material.ARROW);
+        ItemMeta d100Meta = d100.getItemMeta();
+        d100Meta.setDisplayName("§e§l100D メッセージ表示:" + mes);
+        d100.setItemMeta(d100Meta);
+        inv.setItem(8, d100);
+        //開いた時にlistに追加
+        inMenu.add(p);
+        someoneInMenu = true;
+        p.openInventory(inv);
+        /*
         Inventory diceMenu = Bukkit.getServer().createInventory(null, 9, prefix + "Dice Select Menu");
         //gui help
         placeItem(0, diceMenu, Material.BOOK, 1, "§d§lHelp", null, null, null);
@@ -49,6 +86,7 @@ public class Man10DiceManager {
         //開いた時にlistに追加
         inMenu.add(p);
         p.openInventory(diceMenu);
+         */
         return 0;
     }
 
@@ -87,6 +125,7 @@ public class Man10DiceManager {
                 public void run() {
                     Bukkit.broadcastMessage(prefix + p.getDisplayName() + "§d§lさんが§e§l100D§d§lをストップしました！");
                     i = 100;
+                    roll(p);
 
                     Integer ss = Integer.valueOf(result);
                     if (who.containsKey(ss)) {
@@ -107,7 +146,7 @@ public class Man10DiceManager {
                 }
             };
             Timer timer = new Timer();
-            timer.schedule(task, 200);
+            timer.schedule(task, 20000);
         }
         p.sendMessage(prefix + "§c§l100Dが実施されています！");
         return 0;
