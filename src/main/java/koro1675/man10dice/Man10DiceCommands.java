@@ -28,7 +28,6 @@ public class Man10DiceCommands implements CommandExecutor {
         /////////////////////////////////////
         if (args.length == 0){
             p.sendMessage(prefix + "ver2.1");
-            plugin.man10DiceManager.test(p);
             plugin.man10DiceManager.openDiceMenu(p);
         }
 
