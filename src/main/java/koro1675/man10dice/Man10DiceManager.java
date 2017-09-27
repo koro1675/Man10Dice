@@ -30,11 +30,7 @@ public class Man10DiceManager {
     Player owner;
     String prefix = "§l[§d§lM§f§la§a§ln§f§l10§5§lDice§f§l]";
     /////////////////////////////////////////////////////////////////
-
-    int test(Player p){
-        p.sendMessage("done");
-        return 0;
-    }
+    
 
     int openDiceMenu(Player p){
         Inventory diceMenu = Bukkit.getServer().createInventory(null, 9, prefix + "Dice Select Menu");
