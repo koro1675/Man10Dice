@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Man10DiceCommands implements CommandExecutor {
 
-    String prefix = "§f§l[§d§lM§f§la§a§ln10§b§lParty§f§l]";
+    String prefix = "§l[§d§lM§f§la§a§ln§f§l10§5§lDice§f§l]";
     Man10Dice plugin = null;
     public Man10DiceCommands(Man10Dice plugin){
         this.plugin = null;
