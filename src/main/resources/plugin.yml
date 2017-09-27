@@ -1,0 +1,5 @@
+name: Man10Dice
+version: ${project.version}
+main: koro1675.man10dice.Man10Dice
+commands:
+  mdice:
